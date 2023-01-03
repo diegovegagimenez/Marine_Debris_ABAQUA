@@ -192,7 +192,7 @@ for k = 1 : length(theFiles) % k is equal to the total number of days, start: 20
 %     eivissa1{k}=virot1{k}(V1eiv,[2:3,7:end]);
 %     formentera1{k}=virot1{k}(V1for,[2:3,7:end]);
 
-    %----------- READ TEH SECOND SHEET OF EACH EXCEL (VIROT 2) -----------
+%    ----------- READ TEH SECOND SHEET OF EACH EXCEL (VIROT 2) -----------
 
     virot2{k}=readtable(fullfile(fullFileName), 'Sheet', sheetname); 
     virot2{k}=table2cell(virot2{k}); 
@@ -208,24 +208,24 @@ for k = 1 : length(theFiles) % k is equal to the total number of days, start: 20
             virot2{k}{ix,3} = virot2{k}{ix-1,3};
         end
     end
-%     
+     
     virot2{k}=virot2{k}(~any(cellfun(@isempty,virot2{k}(:,16)),2),:); % delete rows without associated routes
-%   
+  
 %     mallorca2{k}=virot2{k}(V2mal,[2:3,7:end]); 
 %     menorca2{k}=virot2{k}(V2men,[2:3,7:end]);
 %     eivissa2{k}=virot2{k}(V2eiv,[2:3,7:end]);
 %     formentera2{k}=virot2{k}(V2for,[2:3,7:end]);
-% 
+ 
 %   -------- CONCATENATE THE DATA OF THE TWO SHEETS -----------------------
-% 
+ 
     Mallorca{k}=cat(1,mallorca1{k},mallorca2{k});
     Menorca{k}=cat(1,menorca1{k},menorca2{k});
     Eivissa{k}=cat(1,eivissa1{k},eivissa2{k});
     Formentera{k}=cat(1,formentera1{k},formentera2{k});
-% 
-% 
-%     % -------------- ADDING ROUTES --------------------------------------
-% 
+ 
+
+%   -------------- ADDING ROUTES ------------------------------------------
+ 
 %   MALLORCA
     routes=readtable(route);
     routes=table2cell(routes);
@@ -251,28 +251,28 @@ for k = 1 : length(theFiles) % k is equal to the total number of days, start: 20
 %   Formentera{k}(:,16:18)=[]
 
 %     % -------------- ADD BINARY COLUMN DEPENDING ON PRESENCE OF COMMENTS -----------------------------------------
-%     
+     
 %     for j = Mallorca{k,1}(:,14);
 %             obs=cellfun(@isnan,j,'UniformOutput', false);
 %     end
 %     Mallorca=[Mallorca{k},obs];
-% 
+
 %     for j = Menorca{k,1}(:,14);
 %             obs=cellfun(@isnan,j,'UniformOutput', false);
 %     end
 %     Menorca=[Menorca{k},obs];
-% 
+
 %     for j = Eivissa{k,1}(:,14);
 %             obs=cellfun(@isnan,j,'UniformOutput', false);
 %     end
 %     Eivissa=[Eivissa{k},obs];
-% 
+
 %     for j = Formentera{k,1}(:,14);
 %             obs=cellfun(@isnan,j,'UniformOutput', false);
 %     end
 %     Formentera=[Formentera{k},obs];
 
-    %  ------------- COMPROVAM QUE LES DADES SIGUIN CORRECTES -------------
+%   ------------- COMPROVAM QUE LES DADES SIGUIN CORRECTES ------------------
     
     for i = 1:size(Mallorca{1},1)
         if Mallorca{i}(1,12)~=Mallorca{i}(1,18)
@@ -284,7 +284,7 @@ for k = 1 : length(theFiles) % k is equal to the total number of days, start: 20
      
 end
 
-% -------------- ADD DATES TO EACH ROW -------------------------------------
+%   -------------- ADD DATES TO EACH ROW -------------------------------------
 
     t=[t2015,t2016,t2017,t2018,t2019,t2021,t2022]';
     dates=cellstr(t);
