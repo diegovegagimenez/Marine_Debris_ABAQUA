@@ -1,3 +1,8 @@
+% This code has been created to be able to read, process and organize the database (homogenization) composed
+% of 1834 Excel sheets (2015 - 2022), carried out by the Balearic Water and Environmental Quality Agency.
+% The rest of the seasons (2005 - 2014) have been processed individually due to the heterogeneity of the
+% raw database for each year.
+
 clear all
 close all
 clc
@@ -162,7 +167,7 @@ for k = 1 : length(theFiles) % k is equal to the total number of days, start: 20
         routeeiv=69:84;
         routefor=86:88;
 
-        t2021=datetime(2022,06,01):datetime(2022,09,30);
+        t2022=datetime(2022,06,01):datetime(2022,09,30);
     end
 
     fprintf(1, 'Now reading %s\n', fullFileName);
@@ -272,7 +277,7 @@ for k = 1 : length(theFiles) % k is equal to the total number of days, start: 20
 %     end
 %     Formentera=[Formentera{k},obs];
 
-%   ------------- COMPROVAM QUE LES DADES SIGUIN CORRECTES ------------------
+%   ------------- CHECK THAT THE DATABASE IS CORRECT ------------------
     
     for i = 1:size(Mallorca{1},1)
         if Mallorca{i}(1,12)~=Mallorca{i}(1,18)
@@ -286,14 +291,14 @@ end
 
 %   -------------- ADD DATES TO EACH ROW -------------------------------------
 
-    t=[t2015,t2016,t2017,t2018,t2019,t2021,t2022]';
-    dates=cellstr(t);
-    Mallorca=[Mallorca',dates];
-    Menorca=[Menorca', dates];
-    Eivissa=[Eivissa', dates];
-    Formentera=[Formentera', dates];
+t=[t2015,t2016,t2017,t2018,t2019,t2021,t2022]';
+dates=cellstr(t);
+Mallorca=[Mallorca',dates];
+Menorca=[Menorca', dates];
+Eivissa=[Eivissa', dates];
+Formentera=[Formentera', dates];
     
-    save('Mallorca2015-21.mat','Mallorca');
-    save('Menorca2015-21.mat','Menorca');
-    save('Eivissa2015-21.mat','Eivissa');
-    save('Formentera2015-21.mat',"Formentera");
+save('Mallorca2015-22.mat','Mallorca');
+save('Menorca2015-22.mat','Menorca');
+save('Eivissa2015-22.mat','Eivissa');
+save('Formentera2015-22.mat',"Formentera");
