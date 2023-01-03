@@ -2,7 +2,7 @@ clear all
 close all
 clc
 
-myFolder = 'C:\Users\diego.vega\Desktop\Datos\datos_i_2015_2021';
+myFolder = 'C:\Users\diego.vega\Desktop\Datos\datos_i_2015_2022';
 
 % Make sure that the file exists, otherwise 'Warn user'.
 
